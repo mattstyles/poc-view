@@ -1,0 +1,24 @@
+.iOS {
+    @--screen-width: 320px;
+    @--screen-height: 568px;
+    @--physical-dimSide: 10px;
+    @--physical-dimTop: 50px;
+    @--physical-dimBottom: 80px;
+    @--physical-radius: 20px;
+
+    margin: 10px auto;
+    padding: @--physical-dimTop @--physical-dimSide @--physical-dimBottom;
+    background: rgba( 0, 0, 0, .3 );
+    border-radius: @--physical-radius;
+    width: @--screen-width + ( @--physical-dimSide * 2 );
+    height: @--screen-height + @--physical-dimTop + @--physical-dimBottom;
+    box-sizing: border-box;
+
+    .iOS-screen {
+        position: relative;
+        width: @--screen-width;
+        height: @--screen-height;
+        background: @--color-white;
+    }
+
+}
