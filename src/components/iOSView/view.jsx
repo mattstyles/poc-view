@@ -1,8 +1,10 @@
 
 import React from 'react'
 
+import HeaderBar from 'iOSHeader/header'
 
-export default class IOS extends React.Component {
+
+export default class IOSView extends React.Component {
     constructor( props ) {
         super( props )
     }
@@ -15,9 +17,12 @@ export default class IOS extends React.Component {
         }
 
         return (
-            <div className="iOS-View u-stretchX">
-                <span>iOSView</span>
-                { items }
+            <div className="iOS-View u-fit">
+                <HeaderBar />
+                <div className="iOS-Scroll u-stretchX">
+                    <span>iOSView</span>
+                    { items }
+                </div>
             </div>
         )
     }

@@ -6,7 +6,13 @@
 @--iOS-physical-radius: 20px;
 
 @--iOS-status-height: 20px;
+@--iOS-HeaderShort-height: 44px;
+@--iOS-HeaderLong-height: 72px;
+
 @--iOS-font: 'Helvetica Neue', 'Lucida Grande', Helvetica, Arial, sans-serif;
+@--iOS-contentPadding: 15px;
+
+
 
 .iOS {
     // Display silhouette device for larger screens
@@ -22,12 +28,7 @@
 
     // Fix up for smaller screens to sort out iOS scrolling issues
     @media @--md-view {
-        position: fixed;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
+        .u-fit-fix();
     }
 }
 
