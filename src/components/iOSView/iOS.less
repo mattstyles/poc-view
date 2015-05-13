@@ -7,26 +7,34 @@
     @--physical-radius: 20px;
     @--status-height: 20px;
 
-    margin: 10px auto;
-    padding: @--physical-dimTop @--physical-dimSide @--physical-dimBottom;
-    background: rgba( 0, 0, 0, .3 );
-    border-radius: @--physical-radius;
-    width: @--screen-width + ( @--physical-dimSide * 2 );
-    height: @--screen-height + @--physical-dimTop + @--physical-dimBottom;
-    box-sizing: border-box;
-
-    .iOS-screen {
-        position: relative;
-        width: @--screen-width;
-        height: @--screen-height;
-        background: @--color-white;
-        padding-top: @--status-height;
+    // Display silhouette device for larger screens
+    @media @--over-md-view {
+        margin: 10px auto;
+        padding: @--physical-dimTop @--physical-dimSide @--physical-dimBottom;
+        background: rgba( 0, 0, 0, .3 );
+        border-radius: @--physical-radius;
+        width: @--screen-width + ( @--physical-dimSide * 2 );
+        height: @--screen-height + @--physical-dimTop + @--physical-dimBottom;
         box-sizing: border-box;
     }
 
+    .iOS-screen {
+        position: relative;
+        background: @--color-white;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        width: @--screen-width;
+        height: @--screen-height;
+
+        @media @--md-view {
+            width: 100vw;
+            height: 100vh;
+        }
+    }
+
     .iOS-StatusBar {
-        position: absolute;
-        top: 0;
         height: @--status-height;
         font-family: @--font-iOS;
         font-size: 13px;
@@ -34,8 +42,10 @@
     }
 
     .iOS-mainView {
+        box-sizing: border-box;
         overflow-x: hidden;
         overflow: auto;
+        flex: 1 100%;
     }
 
 }
