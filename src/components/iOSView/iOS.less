@@ -5,6 +5,7 @@
     @--physical-dimTop: 50px;
     @--physical-dimBottom: 50px;
     @--physical-radius: 20px;
+    @--status-height: 20px;
 
     margin: 10px auto;
     padding: @--physical-dimTop @--physical-dimSide @--physical-dimBottom;
@@ -19,6 +20,17 @@
         width: @--screen-width;
         height: @--screen-height;
         background: @--color-white;
+        padding-top: @--status-height;
+        box-sizing: border-box;
+    }
+
+    .iOS-StatusBar {
+        position: absolute;
+        top: 0;
+        height: @--status-height;
+        font-family: @--font-iOS;
+        font-size: 13px;
+        font-weight: 500;
     }
 
 }

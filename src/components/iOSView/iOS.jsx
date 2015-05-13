@@ -1,6 +1,8 @@
 
 import React from 'react'
 
+import StatusBar from './iOSStatus'
+
 
 export default class IOSView extends React.Component {
     constructor( props ) {
@@ -11,6 +13,7 @@ export default class IOSView extends React.Component {
         return (
             <div className="iOS">
                 <div className="iOS-screen">
+                    <StatusBar />
                     <span>iOSView</span>
                 </div>
             </div>
