@@ -1,0 +1,49 @@
+@--iOS-screen-width: 320px;
+@--iOS-screen-height: 568px;
+@--iOS-physical-dimSide: 10px;
+@--iOS-physical-dimTop: 50px;
+@--iOS-physical-dimBottom: 50px;
+@--iOS-physical-radius: 20px;
+
+@--iOS-status-height: 20px;
+@--iOS-font: 'Helvetica Neue', 'Lucida Grande', Helvetica, Arial, sans-serif;
+
+.iOS {
+    // Display silhouette device for larger screens
+    @media @--over-md-view {
+        margin: 10px auto;
+        padding: @--iOS-physical-dimTop @--iOS-physical-dimSide @--iOS-physical-dimBottom;
+        background: rgba( 0, 0, 0, .3 );
+        border-radius: @--iOS-physical-radius;
+        width: @--iOS-screen-width + ( @--iOS-physical-dimSide * 2 );
+        height: @--iOS-screen-height + @--iOS-physical-dimTop + @--iOS-physical-dimBottom;
+        box-sizing: border-box;
+    }
+
+    // Fix up for smaller screens to sort out iOS scrolling issues
+    @media @--md-view {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+    }
+}
+
+.iOS-Screen {
+    position: relative;
+    background: @--color-white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: @--iOS-screen-width;
+    height: @--iOS-screen-height;
+
+    @media @--md-view {
+        .u-fit-fix();
+        width: auto;
+        height: auto;
+    }
+}
