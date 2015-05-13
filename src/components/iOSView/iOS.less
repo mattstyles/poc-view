@@ -31,6 +31,12 @@
         @media @--md-view {
             width: 100vw;
             height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
         }
     }
 
@@ -44,8 +50,9 @@
     .iOS-mainView {
         box-sizing: border-box;
         overflow-x: hidden;
-        overflow: auto;
-        flex: 1 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        flex: 1;
     }
 
 }

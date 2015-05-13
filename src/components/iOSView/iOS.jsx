@@ -19,7 +19,7 @@ export default class IOSView extends React.Component {
             <div className="iOS">
                 <div className="iOS-screen">
                     <StatusBar />
-                    <div className="iOS-mainView u-stretchY">
+                    <div className="iOS-mainView">
                         <span>iOSView</span>
                         { items }
                     </div>
