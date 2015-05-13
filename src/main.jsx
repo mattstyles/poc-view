@@ -4,7 +4,7 @@ import './utils/font'
 import React from 'react'
 
 import dispatcher from './dispatchers/appDispatcher'
-import IOSView from 'iOSView/iOS'
+import IOS from 'iOS/iOS'
 
 class App extends React.Component {
     constructor() {
@@ -15,7 +15,7 @@ class App extends React.Component {
         return (
             <body className="app">
                 <div className="app-bg"></div>
-                <IOSView />
+                <IOS />
             </body>
         )
     }
