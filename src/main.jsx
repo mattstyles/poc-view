@@ -14,6 +14,7 @@ class App extends React.Component {
     render() {
         return (
             <body className="app">
+                <div className="app-bg"></div>
                 <IOSView />
             </body>
         )
