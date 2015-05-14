@@ -43,9 +43,9 @@ export default class SquadAvatar extends React.Component {
             this.renderIndicator( perc )
 
             if ( perc < this.props.condition ) {
-                setTimeout( () => {
+                raf( () => {
                     animIndicator( ++perc )
-                }, 16.666 )
+                })
             }
         }.bind( this )
 
