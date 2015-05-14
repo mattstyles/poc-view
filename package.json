@@ -34,7 +34,8 @@
     }
   },
   "testling": {
-    "files": "./src/**/*.test.js",
+    "files": "./dist/browser-test.js",
+    "preprocess": "./node_modules/.bin/babel-node ./spec/browser.js --tests './src/**/*.test.js' --output ./dist/browser-test.js",
     "browsers": [
       "ie/6..latest",
       "chrome/22..latest",
