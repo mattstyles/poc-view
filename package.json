@@ -6,7 +6,8 @@
     "prepublish": "npm run build",
     "prepack": "npm run make",
     "watch": "parallelshell 'npm run livereload' 'npm run watch:styles' 'npm run watch:scripts' 'npm run watch:html'",
-    "test": "babel-node ./spec/index.js ./src/**/*.test.js",
+    "test": "babel-node ./node_modules/.bin/tape ./src/**/*.test.js | tap-spec",
+    "test:browser": "browserify ./src/**/*.test.js --extension .jsx --noparse react -t babelify -t aliasify | testling && echo \"TODO Will break, run directly in bash\" ",
     "clean": "rm -rf ./dist/ && mkdir ./dist",
     "livereload": "livereload ./dist/",
     "lint": "eslint ./src/*.js",
@@ -29,6 +30,19 @@
     "aliases": {
       "react": "react/dist/react"
     }
+  },
+  "testling": {
+    "files": "./src/**/*.test.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6",
+      "android-browser/latest"
+    ]
   },
   "keywords": [
     "yeoman",
@@ -74,13 +88,16 @@
     "clean-css": "^3.2.9",
     "eslint": "^0.21.0",
     "flowcheck": "^0.2.6",
+    "glob": "^5.0.6",
     "ho-compiler": "^0.4.0",
     "ho-conformance": "^0.1.0",
     "livereload": "^0.3.7",
     "minimist": "^1.1.1",
     "mustache": "^2.0.0",
     "parallelshell": "^1.1.1",
+    "tap-spec": "^3.0.0",
     "tape": "^4.0.0",
+    "testling": "^1.7.1",
     "uglifyjs": "^2.4.10",
     "watch": "^0.16.0",
     "watchify": "^3.2.1"

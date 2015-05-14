@@ -34,7 +34,7 @@ export default class SquadAvatar extends React.Component {
         }
 
         let animIndicator = function( perc ) {
-            this.renderIndicator( perc )
+            this.renderIndicator( perc / 100 )
 
             if ( perc < this.props.condition ) {
                 raf.request( () => {
