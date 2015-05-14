@@ -11,7 +11,9 @@ export default class SquadItem extends React.Component {
     render() {
         return (
             <li className="Squad-player">
-                <Avatar />
+                <Avatar
+                    condition={ ( Math.random() * 50 ) + 50 }
+                />
                 <span className="junk">{ 'Item ' + this.props.id }</span>
             </li>
         )
