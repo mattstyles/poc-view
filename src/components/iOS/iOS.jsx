@@ -2,7 +2,7 @@
 import React from 'react'
 
 import StatusBar from 'iOSStatus/statusBar'
-import View from 'iOSView/view'
+import SquadView from 'squadView/squadView'
 
 
 export default class IOS extends React.Component {
@@ -15,7 +15,7 @@ export default class IOS extends React.Component {
             <div className="iOS">
                 <div className="iOS-Screen">
                     <StatusBar />
-                    <View />
+                    <SquadView />
                 </div>
             </div>
         )
