@@ -1,17 +1,18 @@
 
 import React from 'react'
+import AnimationFrame from 'animation-frame'
 
 import { percToRad } from 'utils/maths'
 
 
-var raf = (function() {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-    function( cb ) {
-        window.setTimeout( cb, 1000 / 60 )
-    }
-})()
+var raf = new AnimationFrame()
 
 
+/**
+ * SquadAvatar
+ * Holds the avatar and circular indicator
+ * @class
+ */
 export default class SquadAvatar extends React.Component {
     constructor( props ) {
         super( props )
@@ -36,7 +37,7 @@ export default class SquadAvatar extends React.Component {
             this.renderIndicator( perc )
 
             if ( perc < this.props.condition ) {
-                raf( () => {
+                raf.request( () => {
                     animIndicator( ++perc )
                 })
             }
