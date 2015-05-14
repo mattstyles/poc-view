@@ -2,14 +2,14 @@
 import tape from 'tape'
 
 
-tape( 'test stub', t => {
+tape( 'junk test stub', t => {
     t.plan( 1 )
 
     t.pass( 'Test is ok' )
 })
 
 
-tape( 'test stub', t => {
+tape( 'junk 2 test stub', t => {
     t.plan( 1 )
 
     t.fail( 'this test fails' )
@@ -17,7 +17,7 @@ tape( 'test stub', t => {
 
 
 
-tape( 'test stub', t => {
+tape( 'junk 3 test stub', t => {
     t.plan( 1 )
 
     t.pass( 'Test is ok again' )
