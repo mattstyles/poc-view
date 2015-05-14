@@ -23,11 +23,35 @@
 }
 
 .Squad-player {
-    height: 72px;
+    @Squad-playerHeight: 72px;
+    @Squad-contentHeight: @Squad-playerHeight - ( @--iOS-contentPadding * 2 );
+
+    box-sizing: border-box;
+    height: @Squad-playerHeight;
+    padding: @--iOS-contentPadding;
     background: white;
     border-bottom: 1px solid @--color-white30;
 
+    .junk {
+        display: inline-block;
+        float: left;
+        line-height: @Squad-contentHeight;
+        margin-left: @--iOS-contentPadding * 2;
+    }
+
     &:last-of-type {
         border-bottom: none;
+    }
+
+    .Squad-Avatar {
+        position: relative;
+        display: inline-block;
+        float: left;
+        width: @Squad-contentHeight;
+        height: @Squad-contentHeight;
+    }
+
+    .Squad-Avatar-indicator {
+
     }
 }
