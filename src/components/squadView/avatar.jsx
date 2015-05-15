@@ -4,7 +4,7 @@ import AnimationFrame from 'animation-frame'
 
 import { percToRad, interpolate } from 'utils/maths'
 
-
+// Static raf
 var raf = new AnimationFrame()
 
 // Generate interpolated color values
@@ -39,6 +39,7 @@ var colorInterpolation = (function() {
     return colors
 })()
 
+// Helper for grabbing colors
 function getColor( perc: number ) {
     return colorInterpolation[ ~~( perc * 100 ) ]
 }

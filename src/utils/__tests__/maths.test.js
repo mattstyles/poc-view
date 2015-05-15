@@ -27,13 +27,14 @@ tape( 'Percentage to Radians :: ' + path.basename( __filename ), t => {
 
 
 tape( 'Interpolate :: ' + path.basename( __filename ), t => {
-    t.plan( 5 )
+    t.plan( 6 )
 
     t.equal( interpolate( { min: 0, max: 20 } ), 10, 'interpolate should have default parameters' )
     t.equal( interpolate( { min: -10, max: 10, scalar: .25 } ), -5, 'interpolate should handle negative numbers' )
     t.equal( interpolate( { min: 0, max: 1, scalar: .5 } ), .5, '0, 1, .5 should equal .5' )
     t.equal( interpolate( { min: 0, max: 10, scalar: .25 } ), 2.5, '0, 10, .25 should equal 2.5' )
     t.equal( interpolate( { scalar: 2 } ), 1, 'interpolate should clamp scalar 0...1' )
+    t.equal( interpolate( { min: 0, max: 10, scalar: .25, floor: true } ), 2, 'floor param should return an integer' )
 })
 
 
