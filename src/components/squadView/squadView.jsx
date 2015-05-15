@@ -2,6 +2,7 @@
 import React from 'react'
 import IOSView from 'iOSView/view'
 import IOSHeaderBar from 'iOSHeader/header'
+import IOSScrollable from 'iOSScrollable/scrollable'
 
 import Player from './player'
 
@@ -20,12 +21,12 @@ export default class SquadView extends IOSView {
         return (
             <div className="iOS-View u-fit Squad">
                 <IOSHeaderBar />
-                <div className="iOS-Scroll u-stretchX">
+                <IOSScrollable>
                     <h2 className="iOS-text-header">Items</h2>
                     <ul className="Squad-players">
                         { items }
                     </ul>
-                </div>
+                </IOSScrollable>
             </div>
         )
     }
