@@ -4,15 +4,15 @@ import Rx from 'rx'
 
 export default class IOSScrollable extends React.Component {
     static propTypes = {
-        id: React.PropTypes.string.isRequired,
         onScroll: React.PropTypes.func
     }
 
     constructor( props ) {
         super( props )
 
+        // @TODO if no scroll event is passed then probably no need for the observable
         this.subject = new Rx.Subject()
-        this.observable = this.subject.throttleFirst( 100 )
+        this.observable = this.subject.throttleLatest( 500 )
 
         this.observable.subscribe(
             this.props.onScroll || this.onScrollDefault,
@@ -32,7 +32,9 @@ export default class IOSScrollable extends React.Component {
     }
 
     onScroll( event ) {
-        this.subject.onNext( event )
+        this.subject.onNext({
+            target: this.refs.scrollable.getDOMNode()
+        })
     }
 
     onScrollError( error ) {

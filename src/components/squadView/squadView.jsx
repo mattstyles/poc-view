@@ -30,7 +30,7 @@ export default class SquadView extends IOSView {
     render() {
 
         var items = []
-        for ( var i = 0; i < 8; i++ ) {
+        for ( var i = 0; i < 60; i++ ) {
             items.push(
                 <Player
                     key={ 'squad:player:' + i }

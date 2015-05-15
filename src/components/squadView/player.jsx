@@ -17,6 +17,11 @@ export default class SquadItem extends React.Component {
     }
 
     onParentScroll( event ) {
+        // Early return if already revealed
+        if ( this.state.visible ) {
+            return
+        }
+
         let viewport = {
             top: event.target.scrollTop,
             bottom: event.target.scrollTop + event.target.offsetHeight
@@ -27,11 +32,9 @@ export default class SquadItem extends React.Component {
             return
         }
 
-        if ( !this.state.visible ) {
-            this.setState({
-                visible: true
-            })
-        }
+        this.setState({
+            visible: true
+        })
     }
 
     render() {
