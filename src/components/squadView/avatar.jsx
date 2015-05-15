@@ -93,7 +93,9 @@ export default class SquadAvatar extends React.Component {
             // @TODO
             console.error( 'unsupported canvas' )
         }
+    }
 
+    startAnimation() {
         let animIndicator = function( perc ) {
             this.renderIndicator( perc / 100 )
 
@@ -120,6 +122,10 @@ export default class SquadAvatar extends React.Component {
     }
 
     render() {
+        if ( this.props.visible ) {
+            this.startAnimation()
+        }
+        
         return (
             <div className="Squad-Avatar">
                 <canvas

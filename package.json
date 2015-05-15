@@ -16,9 +16,9 @@
     "build:styles": "ho-compile -p src,node_modules,src/core/styles --source-map < ./src/styles.less | autoprefixer -b \"last 2 versions\" > ./dist/styles.css",
     "make:styles": "ho-compile -p src,node_modules,src/core/styles -c < ./src/styles.less | autoprefixer -b \"last 2 versions \"  | cleancss > ./dist/styles.css",
     "watch:styles": "find src -name '*.less' -print0 | xargs -0 ./bin/lesswatch -e src/styles.less -o ./dist/styles.css",
-    "build:scripts": "NODE_PATH=./src/components:./src browserify ./src/main.jsx --extension .jsx --noparse react -t babelify -t aliasify -t flowcheck --debug > ./dist/main.js",
+    "build:scripts": "NODE_PATH=./src/components:./src browserify ./src/main.jsx --extension .jsx --noparse react --noparse rx -t babelify -t aliasify -t flowcheck --debug > ./dist/main.js",
     "make:scripts": "NODE_PATH=./src/components:./src NODE_ENV=prod browserify ./src/main.jsx --extension .jsx -t babelify | uglifyjs > ./dist/main.js",
-    "watch:scripts": "NODE_PATH=./src/components:./src watchify ./src/main.jsx --extension .jsx --noparse react -t babelify -t aliasify -t flowcheck --debug -o ./dist/main.js -v",
+    "watch:scripts": "NODE_PATH=./src/components:./src watchify ./src/main.jsx --extension .jsx --noparse react --noparse rx -t babelify -t aliasify -t flowcheck --debug -o ./dist/main.js -v",
     "make:polyfill": "browserify ./src/polyfill.js | uglifyjs > ./dist/polyfill.js",
     "make:assets": "cp -r ./src/assets ./dist/assets",
     "make:html": "mustache package.json ./src/tmpl/index.hjs > ./dist/index.html",
@@ -30,7 +30,8 @@
   },
   "aliasify": {
     "aliases": {
-      "react": "react/dist/react"
+      "react": "react/dist/react",
+      "rx": "rx/dist/rx.lite"
     }
   },
   "testling": {
@@ -76,6 +77,7 @@
     "normalize.css": "^3.0.3",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
+    "rx": "^2.5.2",
     "webfontloader": "^1.5.18",
     "whatwg-fetch": "^0.8.1"
   },
