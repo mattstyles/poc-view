@@ -14,6 +14,16 @@ var raf = new AnimationFrame()
  * @class
  */
 export default class SquadAvatar extends React.Component {
+    static propTypes = {
+        condition: React.PropTypes.number,
+        url: React.PropTypes.string
+    }
+
+    static defaultProps = {
+        condition: 100,
+        url: ''
+    }
+
     constructor( props ) {
         super( props )
 
@@ -53,7 +63,7 @@ export default class SquadAvatar extends React.Component {
         this.ctx.clearRect( 0, 0, this.dimensions.x, this.dimensions.y )
         this.ctx.beginPath()
         this.ctx.arc( this.dimensions.x / 2, this.dimensions.y / 2, ( this.dimensions.x / 2 ) - 2, start, end )
-        this.ctx.lineWidth = 2
+        this.ctx.lineWidth = 4
         this.ctx.strokeStyle = 'rgb( 68, 208, 104 )'
         this.ctx.stroke()
     }
@@ -67,6 +77,13 @@ export default class SquadAvatar extends React.Component {
                     width={ this.dimensions.x + 'px' }
                     height={ this.dimensions.y + 'px' }>
                 </canvas>
+                <img
+                    className="Squad-Avatar-image"
+                    src={ this.props.url }
+                    width={ this.dimensions.x }
+                    height={ this.dimensions.y }
+                    style={{ padding: 4 }}
+                />
             </div>
         )
     }

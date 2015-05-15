@@ -37,7 +37,7 @@ tape( 'Interpolate :: ' + path.basename( __filename ), t => {
 })
 
 
-tape( 'Interpolate :: ' + path.basename( __filename ), t => {
+tape( 'Clamp :: ' + path.basename( __filename ), t => {
     t.plan( 8 )
 
     t.equal( clamp({ value: .5 }), .5, 'clamp should have default parameters' )
