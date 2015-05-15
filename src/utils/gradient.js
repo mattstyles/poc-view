@@ -7,7 +7,17 @@ import { interpolate } from './maths'
  *
  * @description
  * Given a number of stops, make() creates an 100 value array of interpolated
- * values.
+ * values. Stops consists of r,g,b and stop positoin @TODO add alpha channel
+ *
+ * @example
+ * linearly interpolates between red and yellow
+ * ```
+ * var colors = new ColorInterpolation()
+ *   .addStop({ r:255, g:0, b: 0, pos:0 } )
+ *   .addStop({ r:255, g:255, b: 0, pos:0 } )
+ *   .make()
+ * colors[ 50 ] = rgb( 255, 128, 0 )
+ * ```
  */
 export default class ColorInterpolation {
     constructor() {
@@ -86,5 +96,3 @@ export default class ColorInterpolation {
         return this.colors
     }
 }
-
-window.Col = ColorInterpolation
