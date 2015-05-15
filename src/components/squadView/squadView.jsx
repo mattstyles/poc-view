@@ -19,7 +19,7 @@ export default class SquadView extends IOSView {
         }
 
         return (
-            <div className="iOS-View u-fit Squad">
+            <IOSView classes="Squad">
                 <IOSHeaderBar />
                 <IOSScrollable>
                     <h2 className="iOS-text-header">Items</h2>
@@ -27,7 +27,7 @@ export default class SquadView extends IOSView {
                         { items }
                     </ul>
                 </IOSScrollable>
-            </div>
+            </IOSView>
         )
     }
 }

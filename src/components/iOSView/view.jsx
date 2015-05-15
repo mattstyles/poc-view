@@ -1,5 +1,6 @@
 
 import React from 'react'
+import classNames from 'classnames'
 
 export default class IOSView extends React.Component {
     constructor( props ) {
@@ -7,8 +8,11 @@ export default class IOSView extends React.Component {
     }
 
     render() {
+        var classes = classNames( 'iOS-View', 'u-fit', ...this.props.classes.split( /\s/ ) )
+
         return (
-            <div className="iOS-View u-fit">
+            <div className={ classes }>
+                { this.props.children }
             </div>
         )
     }
