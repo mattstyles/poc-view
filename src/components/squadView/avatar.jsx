@@ -2,10 +2,46 @@
 import React from 'react'
 import AnimationFrame from 'animation-frame'
 
-import { percToRad } from 'utils/maths'
+import { percToRad, interpolate } from 'utils/maths'
 
 
 var raf = new AnimationFrame()
+
+// Generate interpolated color values
+var colorInterpolation = (function() {
+    let col = [ 0, 0, 0 ]
+    let start = [ 208, 68, 74 ]
+    let middle = [ 220, 220, 84 ]
+    let end = [ 68, 208, 104 ]
+    let colors = []
+
+    function map( iteration, startCol, endCol ) {
+        return col.map( ( val, index ) => {
+            return interpolate({
+                min: startCol[ index ],
+                max: endCol[ index ],
+                scalar: iteration / 49,
+                floor: true
+            })
+        })
+    }
+
+    // Add lower interpolation
+    for ( let i = 0; i <= 49; i++ ) {
+        colors.push( 'rgb(' + map( i, start, middle ).join(',') + ')')
+    }
+
+    // Add upper interpolation
+    for ( let i = 0; i <= 49; i++ ) {
+        colors.push( 'rgb(' + map( i, middle, end ).join(',') + ')')
+    }
+
+    return colors
+})()
+
+function getColor( perc: number ) {
+    return colorInterpolation[ ~~( perc * 100 ) ]
+}
 
 
 /**
@@ -64,7 +100,7 @@ export default class SquadAvatar extends React.Component {
         this.ctx.beginPath()
         this.ctx.arc( this.dimensions.x / 2, this.dimensions.y / 2, ( this.dimensions.x / 2 ) - 2, start, end )
         this.ctx.lineWidth = 4
-        this.ctx.strokeStyle = 'rgb( 68, 208, 104 )'
+        this.ctx.strokeStyle = getColor( perc )
         this.ctx.stroke()
     }
 

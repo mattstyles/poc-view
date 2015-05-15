@@ -38,7 +38,10 @@ export function clamp({ value = 0, min = 0, max = 1 }) {
  *   @param min <Number> lower bound
  *   @param max <Number> upper bound
  *   @param scalar <Float 0...1> interpolation scalar
+ *   @param floor <boolean> true returns integers
  */
-export function interpolate({ min = 0, max = 1, scalar = .5 }) {
-    return min + ( ( max - min ) * clamp({ value: scalar, min: 0, max: 1 }) )
+export function interpolate({ min = 0, max = 1, scalar = .5, floor = false }) {
+    return floor
+        ? ~~( min + ( ( max - min ) * clamp({ value: scalar, min: 0, max: 1 }) ) )
+        : min + ( ( max - min ) * clamp({ value: scalar, min: 0, max: 1 }) )
 }
