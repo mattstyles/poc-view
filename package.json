@@ -7,7 +7,7 @@
     "prepack": "npm run make",
     "watch": "parallelshell 'npm run livereload' 'npm run watch:styles' 'npm run watch:scripts' 'npm run watch:html'",
     "test": "babel-node ./node_modules/.bin/tape ./src/**/*.test.js | tap-spec",
-    "test:browser": "browserify -e ./dist/browser-test.js --extension .jsx --noparse react -t babelify -t aliasify | testling",
+    "test:browser": "browserify -e ./dist/browser-test.js --extension .jsx --noparse react -t babelify -t aliasify | testling | tap-spec",
     "pretest:browser": "babel-node ./spec/browser.js --tests './src/**/*.test.js' --output ./dist/browser-test.js",
     "posttest:browser": "rm -f ./dist/browser-test.js",
     "clean": "rm -rf ./dist/ && mkdir ./dist",
@@ -38,7 +38,7 @@
       "babelify",
       "aliasify"
     ]
-  },      
+  },
   "testling": {
     "files": "./dist/browser-test.js",
     "preprocess": "./node_modules/.bin/babel-node ./spec/browser.js --tests './src/**/*.test.js' --output ./dist/browser-test.js",

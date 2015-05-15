@@ -5,9 +5,9 @@ import { percToRad } from '../maths'
 
 // Compass points, regarding points on a circle
 var up = 1.5 * Math.PI
-var right = 0 * Math.PI
-var down = .5 * Math.PI
-var left = 1 * Math.PI
+var right = 2 * Math.PI
+var down = 2.5 * Math.PI
+var left = 3 * Math.PI
 
 tape( 'Percentage to Radians :: ' + path.basename( __filename ), t => {
     t.plan( 7 )
