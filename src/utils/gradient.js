@@ -1,39 +1,14 @@
 
 import { interpolate } from './maths'
 
-
-var colorInterpolation = (function() {
-    let col = [ 0, 0, 0 ]
-    let start = [ 208, 68, 74 ]
-    let middle = [ 220, 220, 84 ]
-    let end = [ 68, 208, 104 ]
-    let colors = []
-
-    function map( iteration, startCol, endCol ) {
-        return col.map( ( val, index ) => {
-            return interpolate({
-                min: startCol[ index ],
-                max: endCol[ index ],
-                scalar: iteration / 49,
-                floor: true
-            })
-        })
-    }
-
-    // Add lower interpolation
-    for ( let i = 0; i <= 49; i++ ) {
-        colors.push( 'rgb(' + map( i, start, middle ).join(',') + ')')
-    }
-
-    // Add upper interpolation
-    for ( let i = 0; i <= 49; i++ ) {
-        colors.push( 'rgb(' + map( i, middle, end ).join(',') + ')')
-    }
-
-    return colors
-})()
-
-
+/**
+ * Interpolates between color stops and caches an array of values
+ * @class
+ *
+ * @description
+ * Given a number of stops, make() creates an 100 value array of interpolated
+ * values.
+ */
 export default class ColorInterpolation {
     constructor() {
         this.stops = []
@@ -48,7 +23,7 @@ export default class ColorInterpolation {
         return this
     }
 
-    orderStops() {
+    _orderStops() {
         this.stops.sort( ( a, b ) => {
             return a.pos > b.pos
         })
@@ -57,7 +32,7 @@ export default class ColorInterpolation {
     }
 
     // 0 and 100% stops are necessary
-    ensureEnds() {
+    _ensureEnds() {
         if ( this.stops[ 0 ].pos !== 0 ) {
             let start = Object.make( Object, this.stops[ 0 ] )
             start.pos = 0
@@ -74,42 +49,37 @@ export default class ColorInterpolation {
     }
 
     make() {
-        this.orderStops()
-        this.ensureEnds()
+        // Set up stops
+        this._orderStops()
+        this._ensureEnds()
 
+        let rgb = [ 'r', 'g', 'b' ]
+
+        // Create color cache
         this.stops.forEach( ( stop, stopIndex ) => {
             // Bail if at last stop
             if ( stopIndex === this.stops.length - 1 ) {
                 return
             }
 
-            var next = this.stops[ stopIndex + 1 ]
-            var diff = next.pos - stop.pos
+            let next = this.stops[ stopIndex + 1 ]
+            let diff = next.pos - stop.pos
+
+            // Thunkify calculating the color interpolation
+            // Returns the fn to pass to Array.map which calcs interpolation
+            function mapColorValue( scalar ) {
+                return function( col ) {
+                    return interpolate({
+                        min: stop[ col ],
+                        max: next[ col ],
+                        scalar: scalar,
+                        floor: true
+                    })
+                }
+            }
 
             for ( let i = 0; i < diff; i++ ) {
-                this.colors.push('rgb(' +
-                    [
-                        interpolate({
-                            min: stop.r,
-                            max: next.r,
-                            scalar: i / diff,
-                            floor: true
-                        }),
-                        interpolate({
-                            min: stop.g,
-                            max: next.g,
-                            scalar: i / diff,
-                            floor: true
-                        }),
-                        interpolate({
-                            min: stop.b,
-                            max: next.b,
-                            scalar: i / diff,
-                            floor: true
-                        })
-                    ].join( ',' ) +
-                    ')'
-                )
+                this.colors.push('rgb(' + rgb.map( mapColorValue( i / diff ) ).join( ',' ) + ')' )
             }
         })
 
