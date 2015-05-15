@@ -27,8 +27,10 @@ export default class SquadItem extends React.Component {
             bottom: event.target.scrollTop + event.target.offsetHeight
         }
 
+        let el = this.refs.el.getDOMNode()
+
         // out of view, bail
-        if ( this.refs.el.getDOMNode().offsetTop < viewport.top || this.refs.el.getDOMNode().offsetTop > viewport.bottom ) {
+        if ( el.offsetTop < viewport.top || el.offsetTop > viewport.bottom ) {
             return
         }
 

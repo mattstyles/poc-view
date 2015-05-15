@@ -34,7 +34,7 @@ export default class SquadView extends IOSView {
             items.push(
                 <Player
                     key={ 'squad:player:' + i }
-                    id={ 's:p:' + i }
+                    id={ i }
                     registerScroll={ this.registerScroll.bind( this ) }
                 />
             )
