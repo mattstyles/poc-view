@@ -10,14 +10,10 @@ export default class IOSScrollable extends React.Component {
     constructor( props ) {
         super( props )
 
-        // @TODO if no scroll event is passed then probably no need for the observable
-        this.subject = new Rx.Subject()
-        this.observable = this.subject.throttleLatest( 500 )
-
-        this.observable.subscribe(
-            this.props.onScroll || this.onScrollDefault,
-            this.onScrollError
-        )
+        // Only apply scroll observable if there is a listener to trigger
+        if ( this.props.onScroll ) {
+            this.observeScroll( this.props.onScroll )
+        }
     }
 
     componentWillUnmount() {
@@ -29,6 +25,16 @@ export default class IOSScrollable extends React.Component {
         this.subject.onNext({
             target: this.refs.scrollable.getDOMNode()
         })
+    }
+
+    observeScroll( listener ) {
+        this.subject = new Rx.Subject()
+        this.observable = this.subject.throttleLatest( 500 )
+
+        this.observable.subscribe(
+            listener || this.onScrollDefault,
+            this.onScrollError
+        )
     }
 
     onScroll( event ) {
