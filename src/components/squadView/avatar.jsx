@@ -2,46 +2,44 @@
 import React from 'react'
 import AnimationFrame from 'animation-frame'
 
-import { percToRad, interpolate } from 'utils/maths'
+import { percToRad } from 'utils/maths'
+import ColorInterpolation from 'utils/gradient'
+
+
+// Create red, yellow, green color values
+var colors = new ColorInterpolation()
+    .addStop({
+        r: 208,
+        g: 68,
+        b: 74,
+        a: 1,
+        pos: 0
+    })
+    .addStop({
+        r: 220,
+        g: 220,
+        b: 84,
+        a: 1,
+        pos: 50
+    })
+    .addStop({
+        r: 68,
+        g: 208,
+        b: 104,
+        a: 1,
+        pos: 100
+    })
+    .make()
+
+
 
 // Static raf
 var raf = new AnimationFrame()
 
-// Generate interpolated color values
-var colorInterpolation = (function() {
-    let col = [ 0, 0, 0 ]
-    let start = [ 208, 68, 74 ]
-    let middle = [ 220, 220, 84 ]
-    let end = [ 68, 208, 104 ]
-    let colors = []
-
-    function map( iteration, startCol, endCol ) {
-        return col.map( ( val, index ) => {
-            return interpolate({
-                min: startCol[ index ],
-                max: endCol[ index ],
-                scalar: iteration / 49,
-                floor: true
-            })
-        })
-    }
-
-    // Add lower interpolation
-    for ( let i = 0; i <= 49; i++ ) {
-        colors.push( 'rgb(' + map( i, start, middle ).join(',') + ')')
-    }
-
-    // Add upper interpolation
-    for ( let i = 0; i <= 49; i++ ) {
-        colors.push( 'rgb(' + map( i, middle, end ).join(',') + ')')
-    }
-
-    return colors
-})()
-
 // Helper for grabbing colors
 function getColor( perc: number ) {
-    return colorInterpolation[ ~~( perc * 100 ) ]
+    // return colorInterpolation[ ~~( perc * 100 ) ]
+    return colors[ ~~( perc * 100 ) ]
 }
 
 
@@ -125,7 +123,7 @@ export default class SquadAvatar extends React.Component {
         if ( this.props.visible ) {
             this.startAnimation()
         }
-        
+
         return (
             <div className="Squad-Avatar">
                 <canvas
