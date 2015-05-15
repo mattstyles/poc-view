@@ -65,16 +65,30 @@ export default class SquadAvatar extends React.Component {
         super( props )
 
         this.ctx = null
+
+        try {
+            this.dimensions = {
+                x: this.dimensions.x * window.devicePixelRatio,
+                y: this.dimensions.y * window.devicePixelRatio
+            }
+            this.indicatorStrokeWidth = this.indicatorStrokeWidth * window.devicePixelRatio
+        } catch( err ) {
+            console.warn( 'window.devicePixelRatio unsupported' )
+        }
     }
 
     dimensions = {
-        x: 44,
-        y: 44
+        x: 56,
+        y: 56
     }
 
+    indicatorStrokeWidth = 4
+
     componentDidMount() {
+        var canvas = this.refs.canvas.getDOMNode()
+
         try {
-            this.ctx = this.refs.canvas.getDOMNode().getContext( '2d' )
+            this.ctx = canvas.getContext( '2d' )
         } catch( err ) {
             // @TODO
             console.error( 'unsupported canvas' )
@@ -99,8 +113,8 @@ export default class SquadAvatar extends React.Component {
 
         this.ctx.clearRect( 0, 0, this.dimensions.x, this.dimensions.y )
         this.ctx.beginPath()
-        this.ctx.arc( this.dimensions.x / 2, this.dimensions.y / 2, ( this.dimensions.x / 2 ) - 2, start, end )
-        this.ctx.lineWidth = 4
+        this.ctx.arc( this.dimensions.x / 2, this.dimensions.y / 2, ( this.dimensions.x / 2 ) - ( this.indicatorStrokeWidth / 2 ), start, end )
+        this.ctx.lineWidth = this.indicatorStrokeWidth
         this.ctx.strokeStyle = getColor( perc )
         this.ctx.stroke()
     }
@@ -115,7 +129,7 @@ export default class SquadAvatar extends React.Component {
                     height={ this.dimensions.y + 'px' }>
                 </canvas>
                 <img
-                    className="Squad-Avatar-image"
+                    className="Squad-Avatar-image u-fill"
                     src={ this.props.url }
                     width={ this.dimensions.x }
                     height={ this.dimensions.y }

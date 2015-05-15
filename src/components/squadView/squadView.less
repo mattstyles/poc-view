@@ -23,12 +23,13 @@
 }
 
 .Squad-player {
-    @Squad-playerHeight: 74px;
-    @Squad-contentHeight: @Squad-playerHeight - ( @--iOS-contentPadding * 2 );
+    @Squad-playerHeight: 72px;
+    @Squad-playerHeightPadding: 8px;
+    @Squad-contentHeight: @Squad-playerHeight - ( @Squad-playerHeightPadding * 2 );
 
     box-sizing: border-box;
     height: @Squad-playerHeight;
-    padding: @--iOS-contentPadding;
+    padding: @Squad-playerHeightPadding @--iOS-contentPadding;
     background: white;
     border-bottom: 1px solid @--color-white30;
 
@@ -52,13 +53,12 @@
     }
 
     .Squad-Avatar-indicator {
-
+        z-index: 10;
     }
 
     .Squad-Avatar-image {
+        z-index: 0;
         border-radius: 200px;
-        width: 44px;
-        height: 44px;
         box-sizing: border-box;
     }
 }
