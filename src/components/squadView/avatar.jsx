@@ -5,28 +5,30 @@ import AnimationFrame from 'animation-frame'
 import { percToRad } from 'utils/maths'
 import ColorInterpolation from 'utils/gradient'
 
-
 // Create red, yellow, green color values
 var colors = new ColorInterpolation()
+    .addStop({
+        r: 131,
+        g: 17,
+        b: 22,
+        pos: 0
+    })
     .addStop({
         r: 208,
         g: 68,
         b: 74,
-        a: 1,
-        pos: 0
+        pos: 60
     })
     .addStop({
         r: 220,
         g: 220,
         b: 84,
-        a: 1,
-        pos: 50
+        pos: 80
     })
     .addStop({
         r: 68,
         g: 208,
         b: 104,
-        a: 1,
         pos: 100
     })
     .make()
@@ -99,7 +101,7 @@ export default class SquadAvatar extends React.Component {
 
             if ( perc < this.props.condition ) {
                 raf.request( () => {
-                    animIndicator( ++perc )
+                    animIndicator( perc = perc + 2 )
                 })
             }
         }.bind( this )
