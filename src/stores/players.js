@@ -64,6 +64,9 @@ class Player {
             second: names.second[ ~~(Math.random() * names.second.length )]
         }
         this.url = 'https://graph.facebook.com/' + 100 + ~~( Math.random() * 20000 ) + '/picture?width=60&height=60'
+        this.form = [ 0, 0, 0, 0, 0 ].map( () => {
+            return Math.random() * 10
+        })
     }
 }
 

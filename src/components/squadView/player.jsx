@@ -48,7 +48,12 @@ export default class SquadItem extends React.Component {
                     url={ this.props.url }
                     visible={ this.state.visible }
                 />
-                <span className="junk">{ [ this.props.name.first, this.props.name.second ].join( ' ' ) }</span>
+                <div className="Squad-playerInfo">
+                    <span className="Squad-playerInfo-title">{ [ this.props.name.first, this.props.name.second ].join( ' ' ) }</span>
+                    <span className="Squad-playerInfo-sub">{ 'Form: ' + this.props.form.map( perf => {
+                        return perf.round()
+                    }).join( '-' ) }</span>
+                </div>
             </li>
         )
     }
