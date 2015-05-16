@@ -3,6 +3,8 @@ import React from 'react'
 import Rx from 'rx'
 import { Dispatcher } from 'flux'
 
+import playerStore from 'stores/players'
+
 import IOSView from 'iOSView/view'
 import IOSHeaderBar from 'iOSHeader/header'
 import IOSScrollable from 'iOSScrollable/scrollable'
@@ -28,17 +30,16 @@ export default class SquadView extends IOSView {
     }
 
     render() {
-
-        var items = []
-        for ( var i = 0; i < 60; i++ ) {
-            items.push(
+        let items = playerStore.players.map( ( player, i ) => {
+            return (
                 <Player
                     key={ 'squad:player:' + i }
                     id={ i }
                     registerScroll={ this.registerScroll.bind( this ) }
+                    { ...player }
                 />
             )
-        }
+        })
 
         return (
             <IOSView classes="Squad">

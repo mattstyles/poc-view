@@ -40,14 +40,15 @@ export default class SquadItem extends React.Component {
     }
 
     render() {
+        console.log( this.props )
         return (
             <li ref="el" className="Squad-player">
                 <Avatar
                     condition={ ( Math.random() * 30 ) + 70 }
-                    url={ this.defaultUrl }
+                    url={ this.props.url }
                     visible={ this.state.visible }
                 />
-                <span className="junk">{ 'Item ' + this.props.id }</span>
+                <span className="junk">{ [ this.props.name.first, this.props.name.second ].join( ' ' ) }</span>
             </li>
         )
     }
