@@ -29,9 +29,9 @@
 
     box-sizing: border-box;
     height: @Squad-playerHeight;
-    padding: @Squad-playerHeightPadding @--iOS-contentPadding;
+    padding: @Squad-playerHeightPadding 0px @Squad-playerHeightPadding @--iOS-contentPadding;
     background: white;
-    border-bottom: 1px solid @--color-white30;
+    /* border-bottom: 1px solid @--color-white30; */
 
     .junk {
         display: inline-block;
@@ -63,22 +63,31 @@
     }
 
     .Squad-playerInfo {
-        display: inline-block;
-        float: left;
+        position: relative;
         height: 100%;
-        margin-left: @--iOS-contentPadding;
+        display: block;
+        margin-left: @--iOS-contentPadding + @Squad-contentHeight;
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            border-bottom: 1px solid @--color-white30;
+            bottom: -@Squad-playerHeightPadding;
+        }
     }
 
     .Squad-playerInfo-title {
-        display: block;
         font-size: 17px;
         line-height: 22px;
-        margin-top: 10px;
     }
 
     .Squad-playerInfo-sub {
-        display: block;
         font-size: 11px;
         line-height: 14px;
+    }
+
+    .Squad-playerInfo-detail {
+        flex: 1;
     }
 }

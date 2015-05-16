@@ -49,10 +49,11 @@ export default class SquadItem extends React.Component {
                     visible={ this.state.visible }
                 />
                 <div className="Squad-playerInfo">
-                    <span className="Squad-playerInfo-title">{ [ this.props.name.first, this.props.name.second ].join( ' ' ) }</span>
-                    <span className="Squad-playerInfo-sub">{ 'Form: ' + this.props.form.map( perf => {
+                    <div className="Squad-playerInfo-title Squad-playerInfo-detail">{ [ this.props.name.first, this.props.name.second ].join( ' ' ) }</div>
+                    <div className="Squad-playerInfo-sub Squad-playerInfo-detail">{ 'Form: ' + this.props.form.map( perf => {
                         return perf.round()
-                    }).join( '-' ) }</span>
+                    }).join( '-' ) }</div>
+                    <div className="Squad-playerInfo-sub Squad-playerInfo-detail">Morale: Good</div>
                 </div>
             </li>
         )
