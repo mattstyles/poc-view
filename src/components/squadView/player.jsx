@@ -52,7 +52,8 @@ export default class SquadItem extends React.Component {
         return (
             <li ref="el" className="Squad-player">
                 <Avatar
-                    condition={ ( Math.random() * 30 ) + 70 }
+                    morale={ this.props.morale }
+                    condition={ this.props.condition }
                     url={ this.props.url }
                     visible={ this.state.visible }
                 />
