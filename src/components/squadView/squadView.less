@@ -25,7 +25,9 @@
 .Squad-player {
     @Squad-playerHeight: 72px;
     @Squad-playerHeightPadding: 8px;
+    @Squad-playerDetailPadding: 6px;
     @Squad-contentHeight: @Squad-playerHeight - ( @Squad-playerHeightPadding * 2 );
+    @Squad-detailHeight: @Squad-contentHeight  - ( @Squad-playerDetailPadding * 2 );
 
     box-sizing: border-box;
     height: @Squad-playerHeight;
@@ -64,30 +66,47 @@
 
     .Squad-playerInfo {
         position: relative;
-        height: 100%;
+        height: @Squad-detailHeight;
         display: block;
         margin-left: @--iOS-contentPadding + @Squad-contentHeight;
+        padding-right: @--iOS-contentPadding;
+        padding: @Squad-playerDetailPadding @--iOS-contentPadding @Squad-playerDetailPadding 0px;
 
         &:after {
             content: '';
             position: absolute;
+            left: 0;
+            bottom: -@Squad-playerHeightPadding;
             width: 100%;
             border-bottom: 1px solid @--color-white30;
-            bottom: -@Squad-playerHeightPadding;
         }
+    }
+
+    .Squad-playerDetail {
+        float: left;
+        font-family: 'Gotham Narrow SSm A', 'Gotham Narrow SSm B'
     }
 
     .Squad-playerInfo-title {
         font-size: 17px;
-        line-height: 22px;
+        line-height: 18px;
+        margin-top: 6px;
+        margin-bottom: 2px;
+        font-weight: 300;
+        letter-spacing: -1px;
     }
 
     .Squad-playerInfo-sub {
-        font-size: 11px;
-        line-height: 14px;
+        font-size: 14px;
+        line-height: 16px;
+        color: #898989;
     }
 
-    .Squad-playerInfo-detail {
-        flex: 1;
+    .Squad-playerInfo-ability {
+        float: right;
+        font-size: 40px;
+        line-height: 44px;
+        font-weight: 300;
+        color: #545454;
     }
 }

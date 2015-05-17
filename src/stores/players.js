@@ -67,6 +67,8 @@ class Player {
         this.form = [ 0, 0, 0, 0, 0 ].map( () => {
             return Math.random() * 10
         })
+        this.rating = ( Math.random() * 4 ) + 6
+        this.ability = ~~(( Math.random() * 29 ) + 70 )
     }
 }
 

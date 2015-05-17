@@ -4,11 +4,13 @@ import React from 'react'
 import Avatar from './avatar'
 
 export default class SquadItem extends React.Component {
+    static propTypes = {
+        id: React.PropTypes.string,
+        registerScroll: React.PropTypes.func.isRequired
+    }
+
     constructor( props ) {
         super( props )
-
-        this.defaultUrl = 'https://graph.facebook.com/' + 100 + ~~( Math.random() * 20000 ) + '/picture?width=60&height=60'
-
         this.props.registerScroll( this.onParentScroll.bind( this ) )
     }
 
@@ -16,6 +18,12 @@ export default class SquadItem extends React.Component {
         visible: false
     }
 
+    /**
+     * Handles visibility of the Component
+     * Checks parent scroll position and size and calcs if visible
+     * Visibility is a one-off, once visible it is currently always
+     * considered visible
+     */
     onParentScroll( event ) {
         // Early return if already revealed
         if ( this.state.visible ) {
@@ -40,7 +48,6 @@ export default class SquadItem extends React.Component {
     }
 
     render() {
-        console.log( this.props )
         return (
             <li ref="el" className="Squad-player">
                 <Avatar
@@ -49,11 +56,11 @@ export default class SquadItem extends React.Component {
                     visible={ this.state.visible }
                 />
                 <div className="Squad-playerInfo">
-                    <div className="Squad-playerInfo-title Squad-playerInfo-detail">{ [ this.props.name.first, this.props.name.second ].join( ' ' ) }</div>
-                    <div className="Squad-playerInfo-sub Squad-playerInfo-detail">{ 'Form: ' + this.props.form.map( perf => {
-                        return perf.round()
-                    }).join( '-' ) }</div>
-                    <div className="Squad-playerInfo-sub Squad-playerInfo-detail">Morale: Good</div>
+                    <div className="Squad-playerDetail">
+                        <div className="Squad-playerInfo-title">{ [ this.props.name.first, this.props.name.second ].join( ' ' ) }</div>
+                        <div className="Squad-playerInfo-sub">{ this.props.rating.toFixed( 2 ) }</div>
+                    </div>
+                    <div className="Squad-playerInfo-ability">{ this.props.ability }</div>
                 </div>
             </li>
         )
