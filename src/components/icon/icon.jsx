@@ -23,7 +23,8 @@ export default class Icon extends React.Component {
             __html: getIcon( this.props.icon )
         }
         let style = {
-            transform: 'rotate( ' + ~~( Math.round( this.props.rotation ) ) + 'deg )'
+            transform: 'rotate( ' + ~~( Math.round( this.props.rotation ) ) + 'deg )',
+            WebkitTransform: 'rotate( ' + ~~( Math.round( this.props.rotation ) ) + 'deg )'
         }
 
         return (
