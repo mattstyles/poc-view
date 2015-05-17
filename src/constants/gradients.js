@@ -74,12 +74,12 @@ export default {
             r: 128,
             g: 128,
             b: 128,
-            pos: 30
+            pos: 50
         })
         .addStop({
-            r: 28,
-            g: 28,
-            b: 28,
+            r: 38,
+            g: 38,
+            b: 38,
             pos: 60
         })
         .addStop({

@@ -67,10 +67,10 @@ class Player {
         this.form = [ 0, 0, 0, 0, 0 ].map( () => {
             return Math.random() * 10
         })
-        this.rating = ( Math.random() * 4 ) + 6
-        this.ability = ~~(( Math.random() * 29 ) + 70 )
+        this.rating = ( Math.random() * 9 ) + 1
+        this.ability = ~~(( Math.random() * 89 ) + 10 )
         this.morale = ( Math.random() * 100 )
-        this.condition = ( Math.random() * 30 ) + 70
+        this.condition = ( Math.random() * 89 ) + 10
         this.position = ~~(( Math.random() * 14 ) + 1 )
         this.selected = Math.random > .5 ? true : false
     }
