@@ -35,7 +35,10 @@ export default class MoraleIndicator extends React.Component {
     }
 
     /**
-     * Triggers the animation of to begin
+     * Triggers the animation
+     * This animation logic and state could be negated using css transitions
+     * but you'd lose the background gradient (red-green rather than move
+     * through the specified gradient)
      */
     startAnimation() {
         let updateAnimation = function( perc ) {
@@ -69,7 +72,7 @@ export default class MoraleIndicator extends React.Component {
 
         // Morale rotation goes from 0 (straight up) to 180 (down) clockwise
         return (
-            <div style={ style } className="Squad-Avatar-morale">
+            <div className="Squad-Avatar-morale" style={ style }>
                 <Icon
                     icon="ARROW_POINTER"
                     rotation={ -180 * ( this.state.morale / 100 ) + 90 }

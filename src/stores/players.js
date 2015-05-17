@@ -72,6 +72,7 @@ class Player {
         this.morale = ( Math.random() * 100 )
         this.condition = ( Math.random() * 30 ) + 70
         this.position = ~~(( Math.random() * 14 ) + 1 )
+        this.selected = Math.random > .5 ? true : false
     }
 }
 

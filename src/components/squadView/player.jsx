@@ -55,6 +55,7 @@ export default class SquadItem extends React.Component {
                     morale={ this.props.morale }
                     condition={ this.props.condition }
                     position={ this.props.position }
+                    selected={ this.props.selected }
                     url={ this.props.url }
                     visible={ this.state.visible }
                 />

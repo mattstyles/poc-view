@@ -28,12 +28,14 @@ export default class SquadAvatar extends React.Component {
     static propTypes = {
         condition: React.PropTypes.number,
         morale: React.PropTypes.number,
+        position: React.PropTypes.number,
         url: React.PropTypes.string
     }
 
     static defaultProps = {
         condition: 100,
         morale: 99,
+        position: 0,
         url: ''
     }
 
@@ -102,6 +104,10 @@ export default class SquadAvatar extends React.Component {
             this.startAnimation()
         }
 
+        let positionStyle = {
+            background: this.props.selected ? 'rgb( 68, 208, 104 )' : '#c0c0c0'
+        }
+
         return (
             <div className="Squad-Avatar">
                 <canvas
@@ -121,6 +127,7 @@ export default class SquadAvatar extends React.Component {
                     morale={ this.props.morale }
                     visible={ this.props.visible }
                 />
+                <div className="Squad-Avatar-position" style={ positionStyle }>{ this.props.position }</div>
             </div>
         )
     }
