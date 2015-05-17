@@ -27,11 +27,13 @@ function getColor( perc: number ) {
 export default class SquadAvatar extends React.Component {
     static propTypes = {
         condition: React.PropTypes.number,
+        morale: React.PropTypes.number,
         url: React.PropTypes.string
     }
 
     static defaultProps = {
         condition: 100,
+        morale: 99,
         url: ''
     }
 
@@ -115,7 +117,10 @@ export default class SquadAvatar extends React.Component {
                     height={ this.dimensions.y }
                     style={{ padding: 4 }}
                 />
-                <Morale morale={ this.props.morale } />
+                <Morale
+                    morale={ this.props.morale }
+                    visible={ this.props.visible }
+                />
             </div>
         )
     }
