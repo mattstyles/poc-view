@@ -54,6 +54,7 @@ export default class SquadItem extends React.Component {
                 <Avatar
                     morale={ this.props.morale }
                     condition={ this.props.condition }
+                    position={ this.props.position }
                     url={ this.props.url }
                     visible={ this.state.visible }
                 />

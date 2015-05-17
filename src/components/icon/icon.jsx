@@ -5,11 +5,13 @@ import getIcon from 'constants/iconId'
 export default class Icon extends React.Component {
     static propTypes = {
         icon: React.PropTypes.string.isRequired,
-        classes: React.PropTypes.string
+        classes: React.PropTypes.string,
+        rotation: React.PropTypes.number
     }
 
     static defaultProps = {
-        classes: ''
+        classes: '',
+        rotation: 0
     }
 
     constructor( props ) {
@@ -17,11 +19,19 @@ export default class Icon extends React.Component {
     }
 
     render() {
-        var icon = {
+        let icon = {
             __html: getIcon( this.props.icon )
         }
+        let style = {
+            transform: 'rotate( ' + ~~( Math.round( this.props.rotation ) ) + 'deg )'
+        }
+
         return (
-            <i className={ this.props.classes } dangerouslySetInnerHTML={ icon }></i>
+            <i
+                className={ this.props.classes }
+                dangerouslySetInnerHTML={ icon }
+                style={ style }>
+            </i>
         )
     }
 }

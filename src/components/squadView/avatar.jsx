@@ -3,36 +3,10 @@ import React from 'react'
 import AnimationFrame from 'animation-frame'
 
 import { percToRad } from 'utils/maths'
-import ColorInterpolation from 'utils/gradient'
+import { conditionGradient } from 'constants/gradients'
 
-// Create red, yellow, green color values
-var colors = new ColorInterpolation()
-    .addStop({
-        r: 131,
-        g: 17,
-        b: 22,
-        pos: 0
-    })
-    .addStop({
-        r: 208,
-        g: 68,
-        b: 74,
-        pos: 60
-    })
-    .addStop({
-        r: 220,
-        g: 220,
-        b: 84,
-        pos: 80
-    })
-    .addStop({
-        r: 68,
-        g: 208,
-        b: 104,
-        pos: 100
-    })
-    .make()
-
+import Icon from 'icon/icon'
+import Morale from './morale'
 
 
 // Static raf
@@ -41,7 +15,7 @@ var raf = new AnimationFrame()
 // Helper for grabbing colors
 function getColor( perc: number ) {
     // return colorInterpolation[ ~~( perc * 100 ) ]
-    return colors[ ~~( perc * 100 ) ]
+    return conditionGradient[ ~~( perc * 100 ) ]
 }
 
 
@@ -141,6 +115,7 @@ export default class SquadAvatar extends React.Component {
                     height={ this.dimensions.y }
                     style={{ padding: 4 }}
                 />
+                <Morale morale={ this.props.morale } />
             </div>
         )
     }

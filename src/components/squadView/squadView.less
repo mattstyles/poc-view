@@ -64,6 +64,25 @@
         box-sizing: border-box;
     }
 
+    .Squad-Avatar-morale {
+        @icon-size: 18px;
+        @icon-cover: 10px;
+
+        position: absolute;
+        right: -@icon-size / 2;
+        top: -@icon-size / 2;
+        width: @icon-size;
+        height: @icon-size;
+        border-radius: 200px;
+
+        svg {
+            top: ( @icon-size - @icon-cover ) / 2;
+            left: ( @icon-size - @icon-cover ) / 2;
+            width: @icon-cover;
+            height: @icon-cover;
+        }
+    }
+
     .Squad-playerInfo {
         position: relative;
         height: @Squad-detailHeight;
