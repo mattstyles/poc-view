@@ -60,5 +60,33 @@ export default {
             b: 104,
             pos: 100
         })
+        .make(),
+
+    // Red, grey, black, green
+    ratingGradient: new ColorInterpolation()
+        .addStop({
+            r: 131,
+            g: 17,
+            b: 22,
+            pos: 0
+        })
+        .addStop({
+            r: 128,
+            g: 128,
+            b: 128,
+            pos: 30
+        })
+        .addStop({
+            r: 28,
+            g: 28,
+            b: 28,
+            pos: 60
+        })
+        .addStop({
+            r: 81,
+            g: 190,
+            b: 102,
+            pos: 100
+        })
         .make()
 }

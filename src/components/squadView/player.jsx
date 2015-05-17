@@ -1,8 +1,11 @@
 
 import React from 'react'
 
+import { ratingGradient } from 'constants/gradients'
+
 import Avatar from './avatar'
 import Icon from 'icon/icon'
+
 
 export default class SquadItem extends React.Component {
     static propTypes = {
@@ -49,6 +52,15 @@ export default class SquadItem extends React.Component {
     }
 
     render() {
+
+        let ratingStyle = {
+            color: ratingGradient[ ~~( this.props.rating * 10 ) ]
+        }
+
+        let abilityStyle = {
+            color: ratingGradient[ ~~this.props.ability ]
+        }
+
         return (
             <li ref="el" className="Squad-player">
                 <Avatar
@@ -61,11 +73,11 @@ export default class SquadItem extends React.Component {
                 />
                 <div className="Squad-playerInfo">
                     <div className="Squad-playerDetail">
-                        <div className="Squad-playerInfo-title">{ [ this.props.name.first, this.props.name.second ].join( ' ' ) }</div>
-                        <div className="Squad-playerInfo-sub">{ this.props.rating.toFixed( 2 ) }</div>
+                        <div className="Squad-playerInfo-title">{ [ this.props.name.first[ 0 ] + '.', this.props.name.second ].join( ' ' ) }</div>
+                        <div className="Squad-playerInfo-sub" style={ ratingStyle }>{ this.props.rating.toFixed( 2 ) }</div>
                     </div>
                     <Icon classes="Squad-playerInfo-icon" icon="ARROW_SLANTED" />
-                    <div className="Squad-playerInfo-ability">{ this.props.ability }</div>
+                    <div className="Squad-playerInfo-ability" style={ abilityStyle }>{ this.props.ability }</div>
                 </div>
             </li>
         )
