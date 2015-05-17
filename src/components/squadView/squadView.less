@@ -75,11 +75,18 @@
         height: @icon-size;
         border-radius: 200px;
 
+        i {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
         svg {
             top: ( @icon-size - @icon-cover ) / 2;
             left: ( @icon-size - @icon-cover ) / 2;
             width: @icon-cover;
             height: @icon-cover;
+            fill: @--color-white;
         }
     }
 
