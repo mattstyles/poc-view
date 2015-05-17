@@ -104,9 +104,25 @@
 
     .Squad-playerInfo-ability {
         float: right;
-        font-size: 40px;
-        line-height: 44px;
+        font-size: @Squad-detailHeight * .90;
+        line-height: @Squad-detailHeight;
         font-weight: 300;
         color: #545454;
+    }
+
+    .Squad-playerInfo-icon {
+        position:relative;
+        float:right;
+        width: @Squad-contentHeight / 4;
+        height: @Squad-detailHeight;
+        margin-left: 4px;
+
+        svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            fill: #898989;
+            transform: rotate( 180deg );
+        }
     }
 }
