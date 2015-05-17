@@ -69,7 +69,7 @@ class Player {
         })
         this.rating = ( Math.random() * 4 ) + 6
         this.ability = ~~(( Math.random() * 29 ) + 70 )
-        this.morale = ( Math.random() * 50 ) + 50
+        this.morale = ( Math.random() * 100 )
         this.condition = ( Math.random() * 30 ) + 70
         this.position = ~~(( Math.random() * 14 ) + 1 )
     }
