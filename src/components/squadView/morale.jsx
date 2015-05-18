@@ -34,7 +34,7 @@ export default class MoraleIndicator extends React.Component {
     constructor( props ) {
         super( props )
 
-        if ( !configStore.gameOptions.uiAnimations ) {
+        if ( !configStore.gameOptions.get( 'uiAnimations' ) ) {
             // Dont trigger a refresh, just set it
             this.state.morale = this.props.morale
         }
@@ -65,7 +65,7 @@ export default class MoraleIndicator extends React.Component {
     render() {
         // If the re-render is due to visibility and we havent animated
         // before then kick into next tick
-        if ( this.props.visible && !this.animating && configStore.gameOptions.uiAnimations ) {
+        if ( this.props.visible && !this.animating && configStore.gameOptions.get( 'uiAnimations' ) ) {
             this.animating = true
             setImmediate( () => {
                 this.startAnimation()

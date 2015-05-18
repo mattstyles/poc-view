@@ -108,14 +108,14 @@ export default class SquadAvatar extends React.Component {
     }
 
     checkAnimation() {
-        if ( !configStore.gameOptions.uiAnimations ) {
+        if ( !configStore.gameOptions.get( 'uiAnimations' ) ) {
             this.renderIndicator( this.props.condition / 100 )
             return
         }
     }
 
     render() {
-        if ( this.props.visible && configStore.gameOptions.uiAnimations ) {
+        if ( this.props.visible && configStore.gameOptions.get( 'uiAnimations' ) ) {
             this.startAnimation()
         }
 
