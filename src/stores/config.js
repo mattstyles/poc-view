@@ -7,15 +7,17 @@ class ConfigStore extends EventEmitter {
     constructor() {
         super()
 
-        var queryParams = qs.parse( window.location.search.replace( /^\?/, '' ) )
-
+        // Create gameOptions as immutable and merge with immutable map of
+        // query parameter options
         this.gameOptions = new Immutable.Map({
             uiAnimations: false
-        })
-
-        Object.keys( queryParams ).forEach( key => {
-            this.gameOptions = this.gameOptions.set( key, queryParams[ key ] === 'true' )
-        })
+        }).merge( new Immutable.Map( qs.parse( window.location.search.replace( /^\?/, '' ) ) )
+            .map( ( key, value ) => {
+                // Casts from string to boolean
+                return /true|false/.test( key )
+                    ? key === 'true'
+                    : key
+            }))
     }
 
 }
