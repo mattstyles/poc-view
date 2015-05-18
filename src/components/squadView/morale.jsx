@@ -2,6 +2,7 @@
 import React from 'react'
 import AnimationFrame from 'animation-frame'
 
+import configStore from 'stores/config'
 import { moraleGradient } from 'constants/gradients'
 import Icon from 'icon/icon'
 
@@ -32,6 +33,11 @@ export default class MoraleIndicator extends React.Component {
      */
     constructor( props ) {
         super( props )
+
+        if ( !configStore.gameOptions.uiAnimations ) {
+            // Dont trigger a refresh, just set it
+            this.state.morale = this.props.morale
+        }
     }
 
     /**
@@ -59,7 +65,7 @@ export default class MoraleIndicator extends React.Component {
     render() {
         // If the re-render is due to visibility and we havent animated
         // before then kick into next tick
-        if ( this.props.visible && !this.animating ) {
+        if ( this.props.visible && !this.animating && configStore.gameOptions.uiAnimations ) {
             this.animating = true
             setImmediate( () => {
                 this.startAnimation()

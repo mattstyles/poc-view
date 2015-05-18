@@ -2,12 +2,12 @@
 import React from 'react'
 import AnimationFrame from 'animation-frame'
 
-import { percToRad } from 'utils/maths'
+import configStore from 'stores/config'
+import { percToRad, clamp } from 'utils/maths'
 import { conditionGradient } from 'constants/gradients'
 
 import Icon from 'icon/icon'
 import Morale from './morale'
-
 
 // Static raf
 var raf = new AnimationFrame()
@@ -15,6 +15,12 @@ var raf = new AnimationFrame()
 // Helper for grabbing colors
 function getColor( perc: number ) {
     // return colorInterpolation[ ~~( perc * 100 ) ]
+    perc = clamp({
+        value: perc,
+        min: 0,
+        max: 99
+    })
+
     return conditionGradient[ ~~( perc * 100 ) ]
 }
 
@@ -71,6 +77,8 @@ export default class SquadAvatar extends React.Component {
             // @TODO
             console.error( 'unsupported canvas' )
         }
+
+        this.checkAnimation()
     }
 
     startAnimation() {
@@ -99,8 +107,15 @@ export default class SquadAvatar extends React.Component {
         this.ctx.stroke()
     }
 
+    checkAnimation() {
+        if ( !configStore.gameOptions.uiAnimations ) {
+            this.renderIndicator( this.props.condition / 100 )
+            return
+        }
+    }
+
     render() {
-        if ( this.props.visible ) {
+        if ( this.props.visible && configStore.gameOptions.uiAnimations ) {
             this.startAnimation()
         }
 
