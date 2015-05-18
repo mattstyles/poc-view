@@ -1,12 +1,18 @@
 
 import EventEmitter from 'eventemitter3'
+import qs from 'qs'
 
 class ConfigStore extends EventEmitter {
     constructor() {
         super()
-        this.gameOptions = {
+
+        var queryParams = qs.parse( window.location.search.replace( /^\?/, '' ) )
+
+        this.gameOptions = Object.assign({
             uiAnimations: false
-        }
+        }, {
+            uiAnimations: queryParams.uiAnimations.toLowerCase() === 'true'
+        })
     }
 
 
